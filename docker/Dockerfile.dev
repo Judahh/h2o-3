@@ -16,7 +16,7 @@ RUN \
   apt-get update -q -y && \
   apt-get dist-upgrade -y && \
   apt-get clean && \
-  rm -rf /var/cache/apt/* 
+  rm -rf /var/cache/apt/*
 
 # Install base ubuntu packages for H2o-3
 RUN \
@@ -27,7 +27,7 @@ RUN \
   add-apt-repository -y ppa:webupd8team/java && \
   apt-get update -q -y && \
   echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
-  echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections && \  
+  echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y oracle-java8-installer
 #     DEBIAN_FRONTEND=noninteractive apt-get install -y oracle-java7-installer && \
 
@@ -47,7 +47,7 @@ RUN \
   tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 -C /usr/local/share/ && \
   rm phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
   ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin && \
-  apt-get clean 
+  apt-get clean
 
 # Install python dependancies
 RUN \
@@ -56,13 +56,13 @@ RUN \
   /usr/bin/pip install -r requirements.txt && \
   /usr/bin/pip3 install --upgrade pip && \
   /usr/bin/pip3 install -r requirements.txt && \
-  rm requirements.txt 
+  rm requirements.txt
 
 # Install R dependancies
 RUN \
   useradd -m -c "H2o AI" jenkins -s /bin/bash && \
   wget https://s3.amazonaws.com/h2o-r/linux/LiblineaR_1.94-2.tar.gz && \
-  R -e 'chooseCRANmirror(graphics=FALSE, ind=54);install.packages(c("R.utils", "AUC", "mlbench", "Hmisc", "flexclust", "randomForest", "bit64", "HDtweedie", "RCurl", "jsonlite", "statmod", "devtools", "roxygen2", "testthat", "Rcpp", "fpc", "RUnit", "ade4", "glmnet", "gbm", "ROCR", "e1071", "ggplot2", "LiblineaR"))' 
+  R -e 'chooseCRANmirror(graphics=FALSE, ind=54);install.packages(c("R.utils", "AUC", "mlbench", "Hmisc", "flexclust", "randomForest", "bit64", "HDtweedie", "RCurl", "jsonlite", "statmod", "devtools", "roxygen2", "testthat", "Rcpp", "fpc", "RUnit", "ade4", "glmnet", "gbm", "ROCR", "e1071", "ggplot2", "LiblineaR"))'
 
 RUN \
 ## Workaround for LiblineaR problem
@@ -71,7 +71,7 @@ RUN \
 # Create users
 RUN \
   useradd -m -c "H2o AI" h2oai -s /bin/bash
-  
+
 
 # Expose ports for services
 EXPOSE 54321
