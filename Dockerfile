@@ -3,7 +3,7 @@
 ########################################################################
 
 # pull base image
-FROM ubuntu:14.04
+FROM ubuntu:trusty-20190425
 
 # maintainer details
 MAINTAINER h2oai "h2o.ai"
